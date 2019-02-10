@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 		rarray<int,2> number_of_ants(length,length);
 
 		total_cnt = 0;
-		uni_ant = total/length;
+		uni_ant = total/(length*length);
 		std::cout << uni_ant << std::endl;
 
 		initialize_uniform(number_of_ants, total);
