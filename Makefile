@@ -1,9 +1,11 @@
 CXX=g++
 CXXFLAGS=-std=c++11 -g -O3 -march=native
+CXXTESTFLAGS=-std=c++11 -g 
 CXXFLAGS=-std=c++11 -g -O2 -march=native -ftree-vectorize -Wall
 
 LDFLAGS=-g
 LDLIBS=
+LDBOOST = -lboost_unit_test_framework
 
 all: antsontable-orig antsontable
 
@@ -59,11 +61,19 @@ clean-more:
 integratedtest: run run-orig
 	diff run run-orig
 
+initializationtest.o: initialization.o
+	${CXX} ${CXXTESTFLAGS} -c initialization_bt.cc
+
+initializationtest: initializationtest.o
+	${CXX} ${CXXTESTFLAGS} -o initialization_bt initialization_bt.o initialization.o ${LDBOOST}
+	./output_bt --log-level all
+
 help:
 	@echo Type:
-	@echo " 'make'                to compile the antsontable and antsontable-orig applications;"
-	@echo " 'make run'            to run antsontable;"
-	@echo " 'make run-orig'       to run antsontable-orig;"
-	@echo " 'make integratedtest' to compare outputs of antsontable and antsontable-orig."
-	@echo " 'make clean'          to remove all object files (triggers a full recompile on next 'make')"
-	@echo " 'make distclean'      to remove all object files, executables and test outputs"
+	@echo " 'make'                		to compile the antsontable and antsontable-orig applications;"
+	@echo " 'make run'            		to run antsontable;"
+	@echo " 'make run-orig'       		to run antsontable-orig;"
+	@echo " 'make integratedtest' 		to compare outputs of antsontable and antsontable-orig."
+	@echo " 'make initializationtest' 	to verify that arrays are uniformly initialized properly."
+	@echo " 'make clean'          		to remove all object files (triggers a full recompile on next 'make')"
+	@echo " 'make distclean'      		to remove all object files, executables and test outputs"
