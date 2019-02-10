@@ -9,6 +9,7 @@
 
 #include "initialization.h"
 #include <rarray>
+#include <rarrayio>
 #include <iostream>
 
 #define BOOST_TEST_DYN_LINK
@@ -23,7 +24,7 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 
 	initialize_uniform(number_of_ants, total);
 
-	std::cout << number_of_ants;
+	std::cout << number_of_ants << std::endl;
 }
 
 
