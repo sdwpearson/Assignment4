@@ -44,6 +44,8 @@ BOOST_AUTO_TEST_CASE(perform_one_timestep_test)
 
 	perform_one_timestep(number_of_ants, new_number_of_ants, seed);
 
+	// Reset total_check
+	total_check = 0;
 	for(int i = 0; i < length; i++)
 	{
 		for(int j = 0; j < length; j++)
