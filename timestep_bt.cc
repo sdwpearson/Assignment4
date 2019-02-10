@@ -23,8 +23,8 @@ BOOST_AUTO_TEST_CASE(perform_one_timestep)
 	int total_check = 0;			// total from the ant array to compare against
 	int total_aux_check = 0;		// total from the auxiliary ant array to compare against
 	int seed = 11;					// randomization seed
-	int sum = 0;
 	int length = 20;				// length of the test array
+
 	rarray<int,2> number_of_ants(length, length);			// number_of_ants array to test
 	rarray<int,2> new_number_of_ants(length, length);		// auxiliary number_of_ants array to test
 
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(perform_one_timestep)
 
 	for(int i = 0; i < length; i++)
 	{
-		for(int i = 0; i < length; i++)
+		for(int j = 0; j < length; j++)
 		{
 			total_check += number_of_ants[i][j];
 		}
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(perform_one_timestep)
 
 	for(int i = 0; i < length; i++)
 	{
-		for(int i = 0; i < length; i++)
+		for(int j = 0; j < length; j++)
 		{
 			total_aux_check += new_number_of_ants[i][j];
 		}
