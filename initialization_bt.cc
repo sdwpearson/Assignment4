@@ -23,10 +23,12 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 	int max_total = 100;		// maximum total number of ants for the random generator
 	int max_length = 8;			// maximum length of the table dimensions for the random generator
 	int total_cnt = 0;			// counts all of the ants to make sure it's the same as the specified total
+	int uni_ant = 0;			// lower bound on the uniform distribution of ants to check against.
+	std::random_device rd;		// creates a random seed for the array initialization
 
 	for (int test = 0; test < num_tests; test++)
 	{
-	    static std::mt19937 engine(test+1);				// Create two random numbers to test the array initialization
+	    static std::mt19937 engine(rd());				// Create two random numbers to test the array initialization
 	    std::uniform_int_distribution<int> uniformint_length(2, max_length);
 	    std::uniform_int_distribution<int> uniformint_total(1, max_total);
 
@@ -35,6 +37,7 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 		rarray<int,2> number_of_ants(length,length);
 
 		total_cnt = 0;
+		uni_ant = total/length;
 
 		initialize_uniform(number_of_ants, total);
 
@@ -43,6 +46,11 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 			for (int j = 0; j < length; j++)
 			{	
 				total_cnt = total_cnt + number_of_ants[i][j]; // count the total number of ants
+				// Check that each ant entry has a uniform number of ants. If the length of the table
+				// and the total number of ants don't line up nicely you get leftovers which is why in 
+				// some cases you'll have uni_ant+1 ants in a cell. Ex. length = 2 and total = 7 will
+				// yield 7/4 = 1.75 so some cells have one ant others have two.
+				BOOST_CHECK(number_of_ants[i][j] == uni_ant || number_of_ants[i][j] == uni_ant+1);
 			}
 		}
 
