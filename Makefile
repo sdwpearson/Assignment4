@@ -79,7 +79,7 @@ timestep_bt.o: timestep.o initialization.o randompartition.o
 	${CXX} ${CXXTESTFLAGS} -c timestep_bt.cc
 
 timesteptest: timestep_bt.o
-	${CXX} ${CXXTESTFLAGS} -o timestep_bt timestep_bt.o timestep.o initialization.o ${LDBOOST}
+	${CXX} ${CXXTESTFLAGS} -o timestep_bt timestep_bt.o timestep.o initialization.o randompartition.o ${LDBOOST}
 	./timestep_bt --log_level=all
 
 help:
