@@ -75,6 +75,13 @@ randompartitiontest: randompartitiontest.o
 	${CXX} ${CXXTESTFLAGS} -o randompartition_bt randompartition_bt.o randompartition.o ${LDBOOST}
 	./randompartition_bt --log_level=all
 
+timestep_bt.o: timestep.o initialization.o
+	${CXX} ${CXXTESTFLAGS} -c timestep_bt.cc
+
+timesteptest: timestep_bt.o
+	${CXX} ${CXXTESTFLAGS} -o timestep_bt timestep_bt.o timestep.o initialization.o ${LDBOOST}
+	./timestep_bt --log_level=all
+
 help:
 	@echo Type:
 	@echo " 'make'                		to compile the antsontable and antsontable-orig applications;"
@@ -83,6 +90,7 @@ help:
 	@echo " 'make integratedtest' 		to compare outputs of antsontable and antsontable-orig."
 	@echo " 'make initializationtest' 	to verify that arrays are uniformly initialized properly."
 	@echo " 'make randompartitiontest' 	to verify that the rand_partition function partitions the correct total number."
+	@echo " 'make timesteptest' 		to verify that the total number of ants either remains constant or decreases after a timestep."
 	@echo " 'make clean'          		to remove all object files (triggers a full recompile on next 'make')"
 	@echo " 'make distclean'      		to remove all object files, executables and test outputs"
 
