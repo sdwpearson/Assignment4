@@ -35,6 +35,8 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 
 		initialize_uniform(number_of_ants, total);
 
+		std::cout << "Test number: " << test << std::endl;
+		std::cout << "Length: " << length << " Total: " << total << std::endl;
 		std::cout << number_of_ants << std::endl;		
 	}
 }

@@ -66,7 +66,7 @@ initializationtest.o: initialization.o
 
 initializationtest: initializationtest.o
 	${CXX} ${CXXTESTFLAGS} -o initialization_bt initialization_bt.o initialization.o ${LDBOOST}
-	./initialization_bt --log-level all
+	./initialization_bt --log_level=all
 
 help:
 	@echo Type:
