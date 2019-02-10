@@ -9,19 +9,19 @@
 
 #include "initialization.h"
 #include "timestep.h"
+#include "randompartition.h"
 #include <rarray>
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE timestep_bt
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(perform_one_timestep)
+BOOST_AUTO_TEST_CASE(perform_one_timestep_test)
 {
 	int num_tests = 10;				// total number of tests to run
 	int nparts = 10;				// number of parts to partition the array
 	int total = 236;				// total amount of ants to partition evenly
 	int total_check = 0;			// total from the ant array to compare against
-	int total_aux_check = 0;		// total from the auxiliary ant array to compare against
 	int seed = 11;					// randomization seed
 	int length = 20;				// length of the test array
 
@@ -48,12 +48,12 @@ BOOST_AUTO_TEST_CASE(perform_one_timestep)
 	{
 		for(int j = 0; j < length; j++)
 		{
-			total_aux_check += new_number_of_ants[i][j];
+			total_check += number_of_ants[i][j];
 		}
 	}
 
 	// Make sure that the array has an equal or less total amount of ants after one timestep
-	BOOST_CHECK(total_aux_check <= total);
+	BOOST_CHECK(total_check <= total);
 }
 
 
