@@ -75,11 +75,11 @@ randompartitiontest: randompartitiontest.o
 	${CXX} ${CXXTESTFLAGS} -o randompartition_bt randompartition_bt.o randompartition.o ${LDBOOST}
 	./randompartition_bt --log_level=all
 
-timestep_bt.o: timestep.o initialization.o randompartition.o
+timestep_bt.o: timestep.o randompartition.o
 	${CXX} ${CXXTESTFLAGS} -c timestep_bt.cc
 
 timesteptest: timestep_bt.o
-	${CXX} ${CXXTESTFLAGS} -o timestep_bt timestep_bt.o timestep.o initialization.o randompartition.o ${LDBOOST}
+	${CXX} ${CXXTESTFLAGS} -o timestep_bt timestep_bt.o timestep.o randompartition.o ${LDBOOST}
 	./timestep_bt --log_level=all
 
 testsuite: initializationtest randompartitiontest timesteptest
