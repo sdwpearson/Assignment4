@@ -68,6 +68,13 @@ initializationtest: initializationtest.o
 	${CXX} ${CXXTESTFLAGS} -o initialization_bt initialization_bt.o initialization.o ${LDBOOST}
 	./initialization_bt --log_level=all
 
+randompartitiontest.o: randompartition.o
+	${CXX} ${CXXTESTFLAGS} -c randompartition_bt.cc
+
+randompartitiontest: randompartitiontest.o
+	${CXX} ${CXXTESTFLAGS} -o randompartition_bt randompartition_bt.o randompartition.o ${LDBOOST}
+	./randompartition_bt --log_level=all
+
 help:
 	@echo Type:
 	@echo " 'make'                		to compile the antsontable and antsontable-orig applications;"
@@ -75,5 +82,12 @@ help:
 	@echo " 'make run-orig'       		to run antsontable-orig;"
 	@echo " 'make integratedtest' 		to compare outputs of antsontable and antsontable-orig."
 	@echo " 'make initializationtest' 	to verify that arrays are uniformly initialized properly."
+	@echo " 'make randompartitiontest' 	to verify that the rand_partition function partitions the correct total number."
 	@echo " 'make clean'          		to remove all object files (triggers a full recompile on next 'make')"
 	@echo " 'make distclean'      		to remove all object files, executables and test outputs"
+
+
+
+
+
+

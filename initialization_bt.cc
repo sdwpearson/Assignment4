@@ -9,7 +9,6 @@
 
 #include "initialization.h"
 #include <rarray>
-#include <rarrayio>
 #include <random>
 #include <iostream>
 
@@ -56,10 +55,6 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 				BOOST_CHECK(uni_check);
 			}
 		}
-
-		std::cout << "Test number: " << test << std::endl;
-		std::cout << "Length: " << length << " Total: " << total << std::endl;
-		std::cout << number_of_ants << std::endl;	
 
 		// Make sure the total number of ants initialized in the array is correct
 		BOOST_CHECK(total==total_cnt);	
