@@ -28,24 +28,25 @@ BOOST_AUTO_TEST_CASE(initialize_uniform_test)
 
 	for (int test = 0; test < num_tests; test++)
 	{
-	    static std::mt19937 engine(rd());				// Create two random numbers to test the array initialization
-	    std::uniform_int_distribution<int> uniformint_length(2, max_length);
-	    std::uniform_int_distribution<int> uniformint_total(1, max_total);
+	    static std::mt19937 engine(rd());										// Create two random numbers to test the array initialization
+	    std::uniform_int_distribution<int> uniformint_length(2, max_length);	// Randomize the length of the array
+	    std::uniform_int_distribution<int> uniformint_total(1, max_total);		// Randomize the total ants to put in the array
 
 	    int length = uniformint_length(engine);        	// length of the table
 		int total = uniformint_total(engine);			// total number of ants on the table
-		rarray<int,2> number_of_ants(length,length);
+		rarray<int,2> number_of_ants(length,length);	// Initialize the randomized array
 
-		total_cnt = 0;
-		uni_ant = total/(length*length);
+		total_cnt = 0;						// Reset the total count of the ants in the array
+		uni_ant = total/(length*length);	// Find the lower bound of the ants in each cell.
 
-		initialize_uniform(number_of_ants, total);
+		initialize_uniform(number_of_ants, total);	// Initialize the ants on the table
 
 		for (int i = 0; i < length; i++)
 		{
 			for (int j = 0; j < length; j++)
 			{	
 				total_cnt = total_cnt + number_of_ants[i][j]; // count the total number of ants
+				
 				// Check that each ant entry has a uniform number of ants. If the length of the table
 				// and the total number of ants don't line up nicely you get leftovers which is why in 
 				// some cases you'll have uni_ant+1 ants in a cell. Ex. length = 2 and total = 7 will

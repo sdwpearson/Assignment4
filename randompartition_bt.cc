@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(randompartition_test)
 	int num_tests = 10;				// total number of tests to run
 	int nparts = 10;				// number of parts to partition the array
 	int total = 100;				// total amount of numbers to partition
-	int sum = 0;
+	int sum = 0;					// sum of the elements in the array
 	rarray<int,1> nperpart(nparts);
 
 	for (int test = 0; test < num_tests; test++)

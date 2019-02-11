@@ -30,19 +30,19 @@ BOOST_AUTO_TEST_CASE(perform_one_timestep_test)
 	{
 		for(int j = 0; j < length; j++)
 		{
-			number_of_ants[i][j] = number_of_ants_init;
+			number_of_ants[i][j] = number_of_ants_init;		// initialize the array with the same value in each cell
 		}
 	}
 
 	total = number_of_ants_init*length*length; // Total number of ants in the table
 
-	perform_one_timestep(number_of_ants, new_number_of_ants, seed);
+	perform_one_timestep(number_of_ants, new_number_of_ants, seed);	// Jump one timestep so we can verify how many ants remain the array
 
 	for(int i = 0; i < length; i++)
 	{
 		for(int j = 0; j < length; j++)
 		{
-			total_check += number_of_ants[i][j];
+			total_check += number_of_ants[i][j];	// Keep a running tally of how many ants are in the array
 		}
 	}
 
